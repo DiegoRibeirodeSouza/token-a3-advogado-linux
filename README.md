@@ -1,41 +1,69 @@
-# SafeSign A3 Driver Kit for Debian 13 (Trixie)
+# ⚖️ Configuração do Token A3 (SafeSign) para Advogados no Linux
 
-This repository contains a complete "kit" to install the G&D StarSign A3 Token (SafeSign) on Debian 13 "Trixie" (and possibly Debian 12/Testing).
+**[English Version Below]**
 
-## The Problem
-The official drivers provided by authorities (built for Ubuntu 22.04) fail to install on modern Debian systems because:
-1.  They depend on `libtiff5` and `libwxgtk3.0`, which have been removed from Debian 13.
-2.  They conflict with the newer `libgdbm` versions.
+Este repositório é um "Kit de Sobrevivência" para advogados e usuários de Linux (Debian 13 / Ubuntu 24.04+) que precisam acessar tribunais (PJe, eSAJ) usando o token A3 **G&D StarSign CUT S** (SafeSign).
 
-## The Solution
-This kit includes:
-1.  **`libs/`**: A collection of necessary legacy libraries taken from Debian 11/12 repositories (`libtiff5`, `libwxgtk3.0`, `libwebp6`, etc.).
-2.  **`SafeSign-3.8.0-debian13-fixed.deb`**: The original driver, patched to accept `libgdbm-compat4t64` instead of the obsolete compatibility layer.
+![Status](https://img.shields.io/badge/status-funcional-green) ![Debian](https://img.shields.io/badge/debian-13-red) ![License](https://img.shields.io/badge/license-MIT-blue)
 
-## Installation
+## 😟 O Problema
+Os drivers oficiais (como o do site da autoridade certificadora) geralmente são antigos e não instalam em sistemas Linux modernos porque:
+1.  Faltam dependências antigas (`libtiff5`, `libwxgtk3.0`, etc.) que foram removidas do Debian 13.
+2.  Existem conflitos com bibliotecas novas (`libgdbm`).
 
-1.  Clone this repository:
-    ```bash
-    git clone https://github.com/DiegoRibeirodeSouza/safesign-debian13.git
-    cd safesign-debian13
-    ```
+## 🚀 A Solução
+Este kit contém tudo o que você precisa em um só lugar:
+*   📂 **`libs/`**: Todas as bibliotecas legadas necessárias (resgatadas do Debian 11/12).
+*   🔧 **Driver Corrigido**: O arquivo `SafeSign-3.8.0-debian13-fixed.deb` foi modificado para aceitar as bibliotecas modernas do sistema.
+*   ⚡ **Script de Instalação**: Faz todo o trabalho sujo para você.
 
-2.  Make the script executable:
-    ```bash
-    chmod +x install.sh
-    ```
+## 📦 Como Instalar
 
-3.  Run the installer:
-    ```bash
-    ./install.sh
-    ```
-    (You will need to enter your sudo password).
+### Método 1: Clonando (Recomendado)
+Abra seu terminal e rode:
 
-## Configuration
+```bash
+# 1. Baixe o kit
+git clone https://github.com/DiegoRibeirodeSouza/token-a3-advogado-linux.git
+cd token-a3-advogado-linux
 
-For **PJeOffice**, ensure your configuration points to the correct library:
-*   File: `~/.pjeoffice-pro/pjeoffice-pro.config`
-*   Setting: `list.a3=/usr/lib/libaetpkss.so`
+# 2. Dê permissão de execução
+chmod +x install.sh
 
-## Disclaimer
-SafeSign Identity Client is proprietary software of A.E.T. Europe B.V. This repository is for educational and interoperability purposes only, helping users run the software on their specific operating system.
+# 3. Instale
+./install.sh
+```
+
+### Método 2: Baixando a Release
+1.  Vá em **Releases** aqui no lado direito.
+2.  Baixe o arquivo `token-a3-kit-debian13.zip`.
+3.  Descompacte, entre na pasta e rode `./install.sh` pelo terminal.
+
+## ⚙️ Configuração no PJeOffice
+Após instalar, configure o PJeOffice para usar o driver correto:
+1.  Abra o PJeOffice.
+2.  Vá em **Configuração de Certificado** (ou PKCS#11).
+3.  Aponte para a biblioteca:
+    *   `/usr/lib/libaetpkss.so.3`
+
+---
+
+# 🇬🇧 SafeSign A3 Token Kit for Linux
+
+A complete kit to install G&D StarSign A3 Tokens on modern Debian 13 / Ubuntu systems, resolving dependency hell.
+
+## Includes
+*   **Legacy Dependencies**: Pre-packaged `libtiff5`, `wxWidgets`, etc.
+*   **Patched Driver**: `SafeSign-3.8.0` modified for Debian 13 compatibility.
+*   **Auto-Installer**: Simple `install.sh` script.
+
+## Quick Start
+```bash
+git clone https://github.com/DiegoRibeirodeSouza/token-a3-advogado-linux.git
+cd token-a3-advogado-linux
+chmod +x install.sh
+./install.sh
+```
+
+---
+**Disclaimer:** SafeSign is a trademark of A.E.T. Europe B.V. This repository provides compatibility fixes for educational purposes and is not affiliated with the vendor.
