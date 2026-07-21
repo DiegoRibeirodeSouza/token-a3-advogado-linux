@@ -33,5 +33,8 @@ else
     echo "[FAIL] Driver library NOT found!"
 fi
 
+echo "[*] Ensuring smartcard service (pcscd) is running..."
+sudo systemctl enable --now pcscd
+
 echo "=== Done! ==="
 echo "Please restart your PJeOffice using: killall java pjeoffice-pro"
