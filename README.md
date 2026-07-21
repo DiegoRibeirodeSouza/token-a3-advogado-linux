@@ -44,7 +44,20 @@ Após instalar, configure o PJeOffice para usar o driver correto:
 1.  Abra o PJeOffice.
 2.  Vá em **Configuração de Certificado** (ou PKCS#11).
 3.  Aponte para a biblioteca:
-    *   `/usr/lib/libaetpkss.so.3`
+    *   `/usr/lib/safesign-private/libaetpkss.so.3`
+
+## 🌐 Configuração para Navegadores (eproc, e-CAC)
+
+Para utilizar o token em portais da web (como **eproc** e **e-CAC da Receita Federal**), o seu navegador precisa estar configurado.
+
+*   **Google Chrome, Edge e Brave:**
+    O script de instalação `install.sh` **já configura automaticamente** o banco de dados de segurança desses navegadores. Você só precisa reiniciar o navegador completamente após a instalação (digitando `chrome://restart` na barra de endereços).
+*   **Mozilla Firefox:**
+    O Firefox precisa ser configurado manualmente.
+    1. Abra o Firefox e vá em **Configurações > Privacidade e Segurança**.
+    2. Role até o final e clique em **Dispositivos de Segurança...**.
+    3. Clique em **Carregar**, dê o nome de "SafeSign" e cole o caminho: `/usr/lib/safesign-private/libaetpkss.so.3`.
+    4. Clique em OK e reinicie o Firefox.
 
 ---
 
